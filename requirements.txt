@@ -1,0 +1,10 @@
+pandas
+langchain
+langgraph
+langchain_groq
+langchain_core
+langchain_community
+faiss-cpu
+streamlit
+langchain-ollama
+tavily-python
