@@ -18,8 +18,12 @@ def load_langgraph_agenticai_app():
     if not user_input:
         st.error("ERROR: Failed to load the user input from UI.")
         return
-    
-    user_message = st.chat_input("Enter Your message: ")
+
+    if st.session_state.isFetchNewsButtonClicked:
+        user_message = st.session_state.timeframe
+        # print(f"Time Frame:============{user_message}")
+    else:
+        user_message = st.chat_input("Enter Your message: ")
 
     if user_message:
         try:
@@ -39,6 +43,7 @@ def load_langgraph_agenticai_app():
             graph_builder = GraphBuilder(model=model)
             try:
                 graph = graph_builder.setup_graph(usecase=usecase)
+                # print("User Message1:", user_message)
                 DisplayResultStreamlit(usecase, graph, user_message).display_result_on_ui()
 
             except Exception as e:
